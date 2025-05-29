@@ -1,0 +1,131 @@
+<nav
+    class="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center justify-center gap-1 px-4 py-1.5 rounded-full backdrop-blur-md border shadow-md
+        border-gray-200 bg-white/70 text-sm text-gray-700 font-medium
+        dark:bg-gray-900/70 dark:border-gray-700 dark:text-gray-200"
+>
+    <a
+        href="#experiencia"
+        class="px-3 py-1 transition rounded-full
+            text-blue-500 dark:text-blue-400
+            hover:text-blue-600 dark:hover:text-blue-300"
+    >
+        Experiencia
+    </a>
+    <a
+        href="#proyectos"
+        class="px-3 py-1 transition rounded-full
+            text-gray-700 dark:text-gray-200
+            hover:text-blue-600 dark:hover:text-blue-300"
+    >
+        Proyectos
+    </a>
+    <a
+        href="#sobre-mi"
+        class="px-3 py-1 transition rounded-full
+            text-gray-700 dark:text-gray-200
+            hover:text-blue-600 dark:hover:text-blue-300"
+    >
+        Sobre mí
+    </a>
+    <a
+        href="mailto:miduga@gmail.com"
+        class="px-3 py-1 transition rounded-full
+            text-gray-700 dark:text-gray-200
+            hover:text-blue-600 dark:hover:text-blue-300"
+    >
+        Contacto
+    </a>
+
+    <div class="relative ml-1">
+        <button
+            id="theme-toggle-btn"
+            class="flex items-center justify-center p-1 transition hover:scale-110"
+            aria-label="Alternar tema oscuro/claro"
+        >
+            <span class="sr-only">Alternar tema</span>
+
+            <svg
+                id="light"
+                class="theme-toggle-icon size-5 transition-all text-yellow-500"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                fill="none"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="scale: 1;"
+            >
+                <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                <path
+                    d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"
+                ></path>
+            </svg>
+            <svg
+                id="dark"
+                class="theme-toggle-icon absolute size-5 transition-all text-blue-400"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                fill="none"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="scale: 0;"
+            >
+                <path
+                    d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"
+                ></path>
+            </svg>
+        </button>
+    </div>
+</nav>
+
+<script type="module">
+    const html = document.documentElement;
+    const btn = document.getElementById("theme-toggle-btn");
+    const lightIcon = document.getElementById("light");
+    const darkIcon = document.getElementById("dark");
+
+    // Obtener tema guardado o por defecto claro
+    const getTheme = () => localStorage.getItem("theme") || "light";
+
+    // Aplicar tema y actualizar iconos
+    const applyTheme = (theme) => {
+        if (theme === "dark") {
+            html.classList.add("dark");
+            lightIcon.style.scale = "0";
+            darkIcon.style.scale = "1";
+        } else {
+            html.classList.remove("dark");
+            lightIcon.style.scale = "1";
+            darkIcon.style.scale = "0";
+        }
+    };
+
+    // Alternar tema entre claro y oscuro
+    const toggleTheme = () => {
+        const currentTheme = getTheme();
+        const newTheme = currentTheme === "light" ? "dark" : "light";
+        localStorage.setItem("theme", newTheme);
+        applyTheme(newTheme);
+    };
+
+    // Inicializar tema al cargar
+    applyTheme(getTheme());
+
+    // Evento click para cambiar tema
+    btn.addEventListener("click", toggleTheme);
+
+    // Opcional: actualizar tema si cambia preferencia del sistema
+    window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", () => {
+            // Solo actualizar si no hay tema guardado explícito
+            if (!localStorage.getItem("theme")) {
+                applyTheme(
+                    window.matchMedia("(prefers-color-scheme: dark)").matches
+                        ? "dark"
+                        : "light",
+                );
+            }
+        });
+</script>
