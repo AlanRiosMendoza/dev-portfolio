@@ -1,0 +1,22 @@
+---
+import ProjectCard from "@/components/ProjectCard.astro";
+import { data } from "@/data.ts";
+
+const proyects = data.projects;
+---
+
+<section class="">
+    <h2 class="text-3xl font-bold text-center mb-8">Proyectos 👨‍💻</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+            proyects.map((project) => (
+                <ProjectCard
+                    title={project.name}
+                    description={project.description}
+                    imageUrl={project.img}
+                    demoUrl={project.url}
+                />
+            ))
+        }
+    </div>
+</section>

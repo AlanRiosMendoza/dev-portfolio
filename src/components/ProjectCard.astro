@@ -1,0 +1,56 @@
+---
+// Props
+const {
+  title,
+  description,
+  imageUrl,
+  demoUrl,
+  detailsUrl,
+  animation = "fade-up-right",
+  duration = 1000,
+} = Astro.props;
+---
+
+<div
+  data-aos={animation}
+  data-aos-duration={duration}
+  class="aos-init aos-animate"
+>
+  <div class="relative flex flex-col rounded-xl border border-white/10 bg-gradient-to-br from-zinc-900/80 to-zinc-800/60 p-4 shadow-md backdrop-blur-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl">
+    <!-- Imagen -->
+    <img
+      src={imageUrl}
+      alt={`${title} - project image`}
+      class="rounded-lg mb-4"
+    />
+
+    <!-- Contenido -->
+    <div class="flex flex-col gap-2">
+      <h4 class="text-xl font-semibold text-white">{title}</h4>
+      <p class="text-sm text-zinc-300 line-clamp-3">{description}</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-4 flex items-center justify-between">
+      <a
+        href={demoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-1 text-sm font-medium text-indigo-300 hover:text-indigo-200 transition-colors"
+      >
+        Demo
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+          <path d="M2 12h20" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
