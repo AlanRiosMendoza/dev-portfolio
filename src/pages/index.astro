@@ -6,15 +6,28 @@ import Projects from "@/sections/Projects.astro";
 import AboutMe from "@/sections/AboutMe.astro";
 import Skills from "@/sections/Skills.astro";
 import Footer from "@/sections/Footer.astro";
+import Me from "@/sections/Me.astro";
 ---
 
-<Layout>
+<Layout
+	title=" Portafolio - Alan Rios"
+	description="Portafolio de Alan Rios, mostrando mis habilidades, proyectos y experiencia en desarrollo web."
+>
 	<div class="flex flex-col min-h-screen">
 		<Header />
-		<Experience />
-		<Projects />
-		<AboutMe />
-		<Skills />
+		<div class="flex flex-1">
+			<aside
+				class="w-full md:w-1/4 lg:w-1/5 p-4 sticky top-0 h-fit self-start"
+			>
+				<Me />
+			</aside>
+			<main class="flex-1 p-4 flex flex-col gap-8">
+				<Experience />
+				<Projects />
+				<AboutMe />
+				<Skills />
+			</main>
+		</div>
 		<Footer />
 	</div>
 </Layout>

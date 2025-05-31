@@ -1,5 +1,4 @@
 ---
-// Props
 const {
   title,
   description,
@@ -16,7 +15,12 @@ const {
   data-aos-duration={duration}
   class="aos-init aos-animate"
 >
-  <div class="relative flex flex-col rounded-xl border border-white/10 bg-gradient-to-br from-zinc-900/80 to-zinc-800/60 p-4 shadow-md backdrop-blur-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl">
+  <div
+    class="relative flex flex-col rounded-xl border border-white/10
+      bg-white/20 dark:bg-gray-900/40
+      backdrop-blur-md p-4 shadow-md
+      transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl"
+  >
     <!-- Imagen -->
     <img
       src={imageUrl}
@@ -26,8 +30,12 @@ const {
 
     <!-- Contenido -->
     <div class="flex flex-col gap-2">
-      <h4 class="text-xl font-semibold text-white">{title}</h4>
-      <p class="text-sm text-zinc-300 line-clamp-3">{description}</p>
+      <h4 class="text-xl font-semibold text-gray-900 dark:text-white">
+        {title}
+      </h4>
+      <p class="text-sm text-gray-700 dark:text-gray-300 line-clamp-3">
+        {description}
+      </p>
     </div>
 
     <!-- Footer -->
@@ -36,7 +44,7 @@ const {
         href={demoUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center gap-1 text-sm font-medium text-indigo-300 hover:text-indigo-200 transition-colors"
+        class="flex items-center gap-1 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors"
       >
         Demo
         <svg
@@ -46,9 +54,9 @@ const {
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-          <path d="M2 12h20" />
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+          <path d="M2 12h20"></path>
         </svg>
       </a>
     </div>

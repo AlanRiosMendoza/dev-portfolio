@@ -2,109 +2,67 @@
 import SunIcon from "@/assets/svg/sunIcon.svg";
 import MoonIcon from "@/assets/svg/moonIcon.svg";
 
-const THEMES = ["Light", "Dark"];
+const THEMES = ["light", "dark"];
 ---
 
-<div class="relative ml-1 mr-1">
-    <button
-        id="theme-toggle-btn"
-        class="appearance-none border-none flex items-center gap-1 hover:scale-125 transition"
-    >
-        <span class="sr-only">Elige el tema</span>
-        <SunIcon
-            id="light"
-            class="theme-toggle-icon size-5 text-yellow-400 transition-scale duration-200"
-        />
-        <MoonIcon
-            id="dark"
-            class="theme-toggle-icon size-5 text-blue-500 transition-scale duration-200"
-        />
-    </button>
-
+<div
+    class="relative inline-flex items-center w-14 h-8 bg-gray-300 rounded-full cursor-pointer dark:bg-gray-700"
+    id="theme-switch"
+>
     <div
-        id="themes-menu"
-        class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
+        id="switch-knob"
+        class="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md transition-transform"
     >
-        <ul>
-            {
-                THEMES.map((theme) => (
-                    <li
-                        class="themes-menu-option px-2 py-1.5 cursor-pointer hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm"
-                        data-theme={theme.toLowerCase()}
-                    >
-                        {theme}
-                    </li>
-                ))
-            }
-        </ul>
+        <SunIcon class="w-4 h-4 text-yellow-400 m-auto mt-1" id="icon-light" />
+        <MoonIcon
+            class="w-4 h-4 text-blue-500 m-auto mt-1 hidden"
+            id="icon-dark"
+        />
     </div>
 </div>
 
-<style>
-    #themes-menu.open {
-        display: inline;
-        animation: scale-up-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-            both;
-    }
-
-    @keyframes scale-up-center {
-        from {
-            transform: scale(0.8);
-            opacity: 0;
-        }
-        to {
-            transform: scale(1);
-            opacity: 1;
-        }
-    }
-</style>
-
 <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
-        const themesMenu = document.getElementById("themes-menu");
-        const themeToggleBtn = document.getElementById("theme-toggle-btn");
-        const themeOptions = document.querySelectorAll(".themes-menu-option");
-        const icons = document.querySelectorAll(".theme-toggle-icon");
+        const switchEl = document.getElementById("theme-switch");
+        const knob = document.getElementById("switch-knob");
+        const iconLight = document.getElementById("icon-light");
+        const iconDark = document.getElementById("icon-dark");
 
-        const getThemePreference = () =>
-            localStorage.getItem("theme") || "light";
+        const getStoredTheme = () => {
+            const stored = localStorage.getItem("theme");
+            if (stored) return stored;
 
-        const updateIcon = (themePref) => {
-            icons.forEach((icon) => {
-                icon.style.scale = icon.id === themePref ? "1" : "0";
-            });
+            // Si no hay tema guardado, detecta el modo del sistema
+            const prefersDark = window.matchMedia(
+                "(prefers-color-scheme: dark)",
+            ).matches;
+            return prefersDark ? "dark" : "light";
         };
 
-        const updateTheme = () => {
-            const themePref = getThemePreference();
-            const isDark = themePref === "dark";
+        const setTheme = (theme) => {
+            const isDark = theme === "dark";
             document.documentElement.classList.toggle("dark", isDark);
-            updateIcon(themePref);
+            localStorage.setItem("theme", theme);
+
+            // Mover knob y cambiar iconos
+            if (isDark) {
+                knob.style.transform = "translateX(24px)";
+                iconLight.classList.add("hidden");
+                iconDark.classList.remove("hidden");
+            } else {
+                knob.style.transform = "translateX(0)";
+                iconLight.classList.remove("hidden");
+                iconDark.classList.add("hidden");
+            }
         };
 
-        themeToggleBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            themesMenu.classList.toggle("open");
-        });
+        // Estado inicial
+        setTheme(getStoredTheme());
 
-        document.addEventListener("click", () => {
-            themesMenu.classList.remove("open");
+        switchEl.addEventListener("click", () => {
+            const currentTheme = getStoredTheme();
+            const newTheme = currentTheme === "light" ? "dark" : "light";
+            setTheme(newTheme);
         });
-
-        themeOptions.forEach((el) => {
-            el.addEventListener("click", (e) => {
-                const newTheme = e.currentTarget.dataset.theme;
-                localStorage.setItem("theme", newTheme);
-                updateTheme();
-                themesMenu.classList.remove("open");
-            });
-        });
-
-        document.addEventListener("astro:after-swap", () => {
-            updateTheme();
-            window.scrollTo({ left: 0, top: 0, behavior: "instant" });
-        });
-
-        updateTheme();
     });
 </script>

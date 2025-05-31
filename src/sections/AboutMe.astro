@@ -1,0 +1,20 @@
+---
+import { data } from "@/data.ts";
+---
+
+<section
+    class="about-me relative mt-16 p-6 rounded-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-md shadow-md max-w-3xl mx-auto"
+>
+    <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+        Sobre mí
+    </h2>
+    <div class="flex gap-4 mb-4 items-center">
+        <img
+            src={data.avatar}
+            alt="Profile Picture"
+            class="rounded-full w-36 h-36 object-cover block"
+        />
+        
+    </div>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">{data.about}</p>
+</section>

@@ -2,17 +2,23 @@
 import Background from "@/components/Background.astro";
 import "@/styles/global.css";
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="dark">
+<html lang="es">
 	<head>
+		<title>{title}</title>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="author" content="Alan Rios" />
+		<meta
+			name="keywords"
+			content="Alan Rios, Portafolio, Desarrollo Web, Programador, Frontend, Backend"
+		/>
 	</head>
 	<body>
 		<Background />

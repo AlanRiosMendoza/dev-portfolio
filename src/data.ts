@@ -21,13 +21,25 @@ export const data = {
             title: "Backend Developer",
             company: "TechCorp",
             period: "2023 - Actualidad",
-            description: "Desarrollo de APIs en Node.js con MongoDB y JWT."
+            description: "Desarrollo de APIs en Node.js con MongoDB y JWT.",
+            responsibilities: [
+                "Diseño y desarrollo de APIs RESTful.",
+                "Implementación de autenticación y autorización con JWT.",
+                "Optimización de consultas a la base de datos MongoDB.",
+                "Colaboración en equipo ágil para mejorar la arquitectura del backend."
+            ]
         },
         {
             title: "Full Stack Dev",
             company: "Freelance",
             period: "2021 - 2023",
-            description: "Proyectos de sitios web, autenticación, y despliegue con Docker."
+            description: "Proyectos de sitios web, autenticación, y despliegue con Docker.",
+            responsibilities: [
+                "Desarrollo de aplicaciones web con Node.js y Express.",
+                "Implementación de autenticación de usuarios con JWT.",
+                "Despliegue de aplicaciones utilizando Docker.",
+                "Creación de interfaces de usuario responsivas con TailwindCSS."
+            ]
         }
     ],
     projects: [
