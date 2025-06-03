@@ -13,11 +13,11 @@ import ContactIcon from "@/assets/svg/contactIcon.svg";
     </h2>
 
     <div
-        class="relative flex flex-col md:flex-row gap-6 rounded-xl border border-white/10 bg-white/20 dark:bg-gray-900/40 backdrop-blur-md p-6 sm:p-8 shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl"
+        class="flex flex-col md:flex-row rounded-xl border border-white/10 bg-white/20 dark:bg-gray-900/40 backdrop-blur-md p-6 sm:p-8 shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl"
     >
         <!-- Formulario -->
         <form
-            class="flex flex-col gap-4 text-gray-900 dark:text-white w-full md:w-1/2"
+            class="flex flex-col gap-4 text-gray-900 dark:text-white w-full md:w-1/2 md:pr-6"
             id="contact-form"
         >
             <input
@@ -52,33 +52,44 @@ import ContactIcon from "@/assets/svg/contactIcon.svg";
             </button>
         </form>
 
-        <!-- Divider -->
-        <div class="hidden md:block w-px bg-white/30 mx-4"></div>
+        <!-- Línea divisoria (horizontal en sm, vertical en md+) -->
+        <div class="my-6 md:my-0 md:mx-6">
+            <div class="h-px w-full bg-white/30 md:hidden"></div>
+            <div class="w-px h-full bg-white/30 hidden md:block"></div>
+        </div>
 
         <!-- Información de contacto -->
         <div
             class="flex flex-col gap-4 text-gray-800 dark:text-gray-200 w-full md:w-1/2 items-center md:items-start lg:items-center"
         >
             <h3 class="text-xl font-semibold">Contáctame</h3>
-            <!-- Botón de email -->
-            <button
-                class="flex items-center w-full max-w-xs min-w-[220px] gap-3 border-2 border-indigo-600 rounded-lg px-6 py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors justify-center"
-                onclick={`copyText('${data.contact.email}', 'Correo')`}
-            >
-                <EmailIcon class="w-6 h-6" />
-                {data.contact.email}
-            </button>
 
-            <!-- Botón de teléfono -->
-            <button
-                class="flex items-center w-full max-w-xs min-w-[220px] gap-3 border-2 border-indigo-600 rounded-lg px-6 py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors justify-center"
-                onclick={`copyText('${data.contact.phone}', 'Teléfono')`}
-            >
-                <PhoneIcon class="w-6 h-6" />
-                {data.contact.phone}
-            </button>
+            <div class="w-full flex flex-col items-center gap-4">
+                <!-- Email -->
+                <button
+                    id="copy-email"
+                    class="flex items-center w-full gap-2 border-2 border-indigo-600 rounded-lg px-6 py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors justify-center"
+                    onclick={`copyText('${data.contact.email}', 'Correo', 'copy-email')`}
+                >
+                    <EmailIcon class="w-6 h-6" />
+                    {data.contact.email}
+                </button>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 w-full">
+                <!-- Teléfono -->
+                <button
+                    id="copy-phone"
+                    class="flex items-center w-full gap-2 border-2 border-indigo-600 rounded-lg px-6 py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors justify-center"
+                    onclick={`copyText('${data.contact.phone}', 'Teléfono', 'copy-phone')`}
+                >
+                    <PhoneIcon class="w-6 h-6" />
+                    {data.contact.phone}
+                </button>
+            </div>
+
+            <!-- Redes sociales -->
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full justify-items-center"
+            >
                 {
                     data.contact.socials.map((social) => (
                         <a
@@ -86,7 +97,7 @@ import ContactIcon from "@/assets/svg/contactIcon.svg";
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={social.name}
-                            class="flex items-center w-full max-w-xs min-w-[220px] gap-3 border-2 border-indigo-600 rounded-lg px-6 py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors justify-center"
+                            class="flex items-center w-full gap-3 border-2 border-indigo-600 rounded-lg px-6 py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors justify-center"
                         >
                             <img
                                 src={social.icon}

@@ -69,7 +69,7 @@ export const data = {
                 icon: "/svg/linkedin.svg"
             },
             {
-                name: "X",
+                name: "X/Twitter",
                 url: "https://x.com/alan_ri0s",
                 icon: "/svg/x.svg"
             },
