@@ -1,0 +1,39 @@
+---
+import { data } from "@/data.ts";
+
+import SkillIcon from "@/assets/svg/skillIcon.svg"
+
+const animation = "fade-up-right";
+const duration = 1000;
+---
+
+<section class="scroll-mt-17"
+id="habilidades">
+    <div
+        data-aos={animation}
+        data-aos-duration={duration}
+        class="aos-init aos-animate"
+    >
+        <h2
+            class="flex items-center gap-2  text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4"
+        >
+           <SkillIcon class="text-gray-900 dark:text-gray-100"/> Habilidades
+        </h2>
+        <div
+            class="relative flex flex-col rounded-xl border border-white/10
+        bg-white/20 dark:bg-gray-900/40
+        backdrop-blur-md p-6 shadow-md
+        transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl"
+        >
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {
+                    data.skills.map((skill) => (
+                        <div class="flex items-center justify-center rounded-lg bg-white/80 dark:bg-gray-800 text-gray-800 dark:text-gray-200 shadow-sm p-3 text-sm font-medium transition-transform duration-300 hover:scale-105">
+                            {skill}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

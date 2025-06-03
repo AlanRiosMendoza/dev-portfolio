@@ -1,33 +1,51 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
 import Header from "@/sections/Header.astro";
+import Me from "@/sections/Me.astro";
 import Experience from "@/sections/Experience.astro";
 import Projects from "@/sections/Projects.astro";
 import AboutMe from "@/sections/AboutMe.astro";
 import Skills from "@/sections/Skills.astro";
+import Contact from "@/sections/Contact.astro";
 import Footer from "@/sections/Footer.astro";
-import Me from "@/sections/Me.astro";
+import Message from "@/components/Message.astro";
 ---
 
+<!-- Portafolio de Alan Rios -->
 <Layout
-	title=" Portafolio - Alan Rios"
+	title="Portafolio - Alan Rios"
 	description="Portafolio de Alan Rios, mostrando mis habilidades, proyectos y experiencia en desarrollo web."
 >
-	<div class="flex flex-col min-h-screen">
+	<div class="flex flex-col pt-18 gap-5">
+		<!-- Encabezado del sitio (navbar) -->
 		<Header />
-		<div class="flex flex-1">
+
+		<div
+			class="flex flex-col lg:flex-row items-start justify-center px-5 md:px-10 lg:px-15 gap-5 md:gap-10 lg:gap-15"
+		>
+			<!-- Contenedor de presentación personal -->
 			<aside
-				class="w-full md:w-1/4 lg:w-1/5 p-4 sticky top-0 h-fit self-start"
+				class="w-full lg:w-1/4 lg:sticky lg:top-17 order-1 lg:order-none"
 			>
 				<Me />
 			</aside>
-			<main class="flex-1 p-4 flex flex-col gap-8">
+
+			<!-- Contenido principal del portafolio -->
+			<main
+				class="w-full lg:flex-1 flex flex-col gap-5 order-2 lg:order-none"
+			>
 				<Experience />
 				<Projects />
 				<AboutMe />
 				<Skills />
+				<Contact />
 			</main>
 		</div>
+
+		<!-- Pie de página -->
 		<Footer />
+
+		<!-- Contenedor para notificaciones -->
+		 <Message />
 	</div>
 </Layout>

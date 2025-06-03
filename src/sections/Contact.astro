@@ -1,0 +1,185 @@
+---
+import { data } from "@/data.ts";
+import PhoneIcon from "@/assets/svg/phoneIcon.svg";
+import EmailIcon from "@/assets/svg/emailIcon.svg";
+import ContactIcon from "@/assets/svg/contactIcon.svg";
+---
+
+<section class="scroll-mt-17 px-4 sm:px-6 md:px-0" id="contacto">
+    <h2
+        class="flex items-center gap-2 text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6"
+    >
+        <ContactIcon />Contacto
+    </h2>
+
+    <div
+        class="relative flex flex-col md:flex-row gap-6 rounded-xl border border-white/10 bg-white/20 dark:bg-gray-900/40 backdrop-blur-md p-6 sm:p-8 shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl"
+    >
+        <!-- Formulario -->
+        <form
+            class="flex flex-col gap-4 text-gray-900 dark:text-white w-full md:w-1/2"
+            id="contact-form"
+        >
+            <input
+                type="text"
+                name="name"
+                placeholder="Tu nombre"
+                required
+                class="px-4 py-3 rounded-lg bg-white/70 dark:bg-gray-800 border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-500"
+            />
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Tu correo"
+                required
+                class="px-4 py-3 rounded-lg bg-white/70 dark:bg-gray-800 border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-500"
+            />
+
+            <textarea
+                name="message"
+                rows="5"
+                placeholder="Tu mensaje"
+                required
+                class="px-4 py-3 rounded-lg bg-white/70 dark:bg-gray-800 border border-white/20 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-500"
+            ></textarea>
+
+            <button
+                type="submit"
+                class="self-start sm:self-center md:self-start px-6 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
+            >
+                Enviar mensaje
+            </button>
+        </form>
+
+        <!-- Divider -->
+        <div class="hidden md:block w-px bg-white/30 mx-4"></div>
+
+        <!-- Información de contacto -->
+        <div
+            class="flex flex-col gap-4 text-gray-800 dark:text-gray-200 w-full md:w-1/2 items-center md:items-start lg:items-center"
+        >
+            <h3 class="text-xl font-semibold">Contáctame</h3>
+            <!-- Botón de email -->
+            <button
+                class="flex items-center w-full max-w-xs min-w-[220px] gap-3 border-2 border-indigo-600 rounded-lg px-6 py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors justify-center"
+                onclick={`copyText('${data.contact.email}', 'Correo')`}
+            >
+                <EmailIcon class="w-6 h-6" />
+                {data.contact.email}
+            </button>
+
+            <!-- Botón de teléfono -->
+            <button
+                class="flex items-center w-full max-w-xs min-w-[220px] gap-3 border-2 border-indigo-600 rounded-lg px-6 py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors justify-center"
+                onclick={`copyText('${data.contact.phone}', 'Teléfono')`}
+            >
+                <PhoneIcon class="w-6 h-6" />
+                {data.contact.phone}
+            </button>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 w-full">
+                {
+                    data.contact.socials.map((social) => (
+                        <a
+                            href={social.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={social.name}
+                            class="flex items-center w-full max-w-xs min-w-[220px] gap-3 border-2 border-indigo-600 rounded-lg px-6 py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors justify-center"
+                        >
+                            <img
+                                src={social.icon}
+                                alt={social.name}
+                                class="w-6 h-6 inline-block transition-transform transform hover:scale-115"
+                            />
+                            <span>{social.name}</span>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    function copyText(text, label = "Texto") {
+        navigator.clipboard
+            .writeText(text)
+            .then(() => {
+                window.showMessage?.({
+                    title: "Copiado",
+                    description: `${label} copiado al portapapeles.`,
+                    type: "success",
+                });
+            })
+            .catch(() => {
+                window.showMessage?.({
+                    title: "Error",
+                    description: `No se pudo copiar el ${label.toLowerCase()}.`,
+                    type: "error",
+                });
+            });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("contact-form");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            const jsonData = {};
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+
+            if (!jsonData.name || !jsonData.email || !jsonData.message) {
+                window.showMessage({
+                    title: "Campos incompletos",
+                    description:
+                        "Por favor, completa todos los campos antes de enviar.",
+                    type: "error",
+                });
+                return;
+            }
+
+            try {
+                const response = await fetch("/api/contact", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(jsonData),
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    window.showMessage({
+                        title: "Mensaje enviado",
+                        description:
+                            "Tu mensaje ha sido enviado correctamente.",
+                        type: "success",
+                    });
+                    form.reset();
+                } else {
+                    window.showMessage({
+                        title: "Error al enviar",
+                        description:
+                            data.message ||
+                            "Por favor, inténtalo de nuevo más tarde.",
+                        type: "error",
+                    });
+                }
+            } catch (error) {
+                window.showMessage({
+                    title: "Error de conexión",
+                    description:
+                        "No se pudo enviar el mensaje. Por favor, inténtalo de nuevo más tarde.",
+                    type: "error",
+                });
+            }
+        });
+    });
+</script>

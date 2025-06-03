@@ -4,7 +4,8 @@ const {
   description,
   imageUrl,
   demoUrl,
-  detailsUrl,
+  githubUrl,
+  tech = [],
   animation = "fade-up-right",
   duration = 1000,
 } = Astro.props;
@@ -36,6 +37,17 @@ const {
       <p class="text-sm text-gray-700 dark:text-gray-300 line-clamp-3">
         {description}
       </p>
+
+      <!-- Tecnologías -->
+      <div class="flex flex-wrap gap-2 mt-2">
+        {tech.map((item: unknown) => (
+          <span
+            class="text-xs bg-white/30 dark:bg-gray-700 text-gray-900 dark:text-gray-200 px-2 py-1 rounded-md"
+          >
+            {item}
+          </span>
+        ))}
+      </div>
     </div>
 
     <!-- Footer -->
@@ -57,6 +69,23 @@ const {
           <circle cx="12" cy="12" r="10"></circle>
           <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
           <path d="M2 12h20"></path>
+        </svg>
+      </a>
+
+      <a
+        href={githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-1 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+      >
+        GitHub
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.26.82-.577v-2.234c-3.338.724-4.033-1.415-4.033-1.415-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.729.083-.729 1.204.084 1.837 1.237 1.837 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.304-5.466-1.332-5.466-5.931 0-1.31.468-2.381 1.236-3.221-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23.957-.266 1.983-.398 3.003-.403 1.02.005 2.047.137 3.006.403 2.29-1.552 3.295-1.23 3.295-1.23.655 1.653.243 2.873.12 3.176.77.84 1.233 1.911 1.233 3.221 0 4.61-2.807 5.625-5.48 5.921.43.372.823 1.104.823 2.225v3.293c0 .319.216.694.825.576C20.565 21.796 24 17.296 24 12c0-6.63-5.373-12-12-12z"/>
         </svg>
       </a>
     </div>

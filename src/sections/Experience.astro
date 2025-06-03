@@ -1,38 +1,50 @@
 ---
 import { data } from "@/data.ts";
+import JobIcon from "@/assets/svg/jobIcon.svg";
 
 const { experience } = data;
+const animation = "fade-up-right";
+const duration = 1000;
 ---
 
-<section
-    class="about-me relative mt-16 p-6 rounded-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-md shadow-md max-w-3xl mx-auto"
->
-    <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
-        Experiencia Profesional 🏆
-    </h2>
-    <div class="flex flex-col gap-4">
-        {
-            data.experience.map((job) => (
-                <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                        {job.title}
-                    </h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">
-                        {job.company} - {job.period}
-                    </p>
-                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                        {job.description}
-                    </p>
-                    <ul class="list-disc pl-5 mt-2 text-gray-700 dark:text-gray-300">
-                        {
-                            job.responsibilities.map((task) => (
-                                <li>{task}</li>
-                            ))
-                        }
-                    </ul>
-                    
-                </div>
-            ))
-        }
-    </div>
+<section class="scroll-mt-17" id="experiencia">
+  <h2
+    class=" flex items-center gap-2 text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6"
+  >
+    <JobIcon /> Experiencia Profesional
+  </h2>
+
+  <div class="flex flex-col gap-6">
+    {
+      experience.map((job) => (
+        <div
+          data-aos={animation}
+          data-aos-duration={duration}
+          class="aos-init aos-animate"
+        >
+          <div
+            class="relative flex flex-col rounded-xl border border-white/10
+              bg-white/20 dark:bg-gray-900/40
+              backdrop-blur-md p-5 shadow-md
+              transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl"
+          >
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+              {job.title}
+            </h3>
+            <p class="text-sm text-gray-700 dark:text-gray-400">
+              {job.company} ~ {job.period}
+            </p>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
+              {job.description}
+            </p>
+            <ul class="list-disc pl-5 mt-3 text-sm text-gray-700 dark:text-gray-300">
+              {job.responsibilities.map((task) => (
+                <li>{task}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))
+    }
+  </div>
 </section>

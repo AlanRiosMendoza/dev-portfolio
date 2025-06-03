@@ -2,34 +2,75 @@
 import { data } from "@/data.ts";
 ---
 
-<section
-    class="me relative mt-10 p-6 rounded-2xl bg-white/60 dark:bg-gray-900/60 backdrop-blur-md shadow-md max-w-xl w-full mx-auto text-center hidden sm:block"
+<div
+    class="relative flex flex-col sm:flex-row md:flex-row lg:flex-col items-center gap-5
+	rounded-xl border border-white/10 max-w-7xl w-full mx-auto
+	p-6 sm:px-6 lg:px-8
+	bg-white/20 dark:bg-gray-900/40
+	backdrop-blur-md shadow-md
+	transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl"
 >
-    <div class="flex justify-center">
-        <div class="relative">
-            <img
-                src={data.avatar}
-                alt="Profile Picture"
-                class="rounded-2xl w-40 h-52 sm:w-44 sm:h-56 md:w-48 md:h-60 object-cover object-top shadow-lg border-4 border-white dark:border-gray-800"
-            />
-        </div>
-    </div>
+    <!-- Imagen del perfil -->
+    <img
+        src={data.avatar}
+        alt="Profile Picture"
+        class="rounded-2xl w-40 h-52 sm:w-44 sm:h-56 md:w-48 md:h-60
+		object-cover object-top shadow-lg
+		border-4 border-white dark:border-gray-800"
+    />
 
-    <a
-        href="https://btlk.vercel.app/alan"
-        target="_blank"
-        rel="noopener"
-        class="mt-4 inline-flex items-center justify-center transition hover:scale-105"
+    <!-- Contenido importante -->
+    <div
+        class="flex flex-col gap-3
+		items-center text-center
+		md:items-start md:text-left"
     >
-        <div class="relative inline-flex overflow-hidden rounded-full p-[1px]">
-            <span
-                class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#51E4B8_0%,#21554E_50%,#51E4B8_100%)]"
-            ></span>
+        <!-- Badge de disponibilidad -->
+        <a
+            href="https://btlk.vercel.app/alan"
+            target="_blank"
+            rel="noopener"
+            class="transition hover:scale-105"
+        >
             <div
-                class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-green-800 bg-green-100 rounded-full cursor-pointer dark:bg-gray-800 dark:text-green-300 backdrop-blur-3xl whitespace-nowrap"
+                class="relative inline-flex rounded-full p-[1px] overflow-hidden"
             >
-                Disponible para trabajar
+                <span
+                    class="absolute inset-[-1000%] animate-spin-slow
+					bg-[conic-gradient(from_90deg_at_50%_50%,#51E4B8_0%,#21554E_50%,#51E4B8_100%)]"
+                ></span>
+                <div
+                    class="relative inline-flex items-center justify-center px-3 py-1 text-sm
+					text-green-800 bg-green-100 rounded-full cursor-pointer
+					dark:bg-gray-800 dark:text-green-300 backdrop-blur-3xl whitespace-nowrap"
+                >
+                    Disponible para trabajar
+                </div>
             </div>
-        </div>
-    </a>
-</section>
+        </aF>
+
+        <!-- Nombre -->
+        <h1
+            class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100"
+        >
+            {data.name}
+        </h1>
+
+        <!-- Descripción breve -->
+        <span class="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
+            🎓 {data.careerTitle}
+        </span>
+
+        <!-- Botón de descarga de CV -->
+        <a
+            href={data.cv}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded-lg
+			hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600
+			transition-colors duration-300"
+        >
+            Descargar CV
+        </a>
+    </div>
+</div>

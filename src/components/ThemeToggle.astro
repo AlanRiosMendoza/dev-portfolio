@@ -1,68 +1,51 @@
 ---
 import SunIcon from "@/assets/svg/sunIcon.svg";
 import MoonIcon from "@/assets/svg/moonIcon.svg";
-
-const THEMES = ["light", "dark"];
 ---
 
 <div
-    class="relative inline-flex items-center w-14 h-8 bg-gray-300 rounded-full cursor-pointer dark:bg-gray-700"
-    id="theme-switch"
+  id="theme-switch"
+  class="relative inline-flex items-center w-14 h-8 bg-gray-300 rounded-full cursor-pointer dark:bg-gray-700"
 >
-    <div
-        id="switch-knob"
-        class="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md transition-transform"
-    >
-        <SunIcon class="w-4 h-4 text-yellow-400 m-auto mt-1" id="icon-light" />
-        <MoonIcon
-            class="w-4 h-4 text-blue-500 m-auto mt-1 hidden"
-            id="icon-dark"
-        />
-    </div>
+  <div
+    id="switch-knob"
+    class="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md transition-transform"
+  >
+    <SunIcon class="w-4 h-4 text-yellow-400 m-auto mt-1 icon-light" />
+    <span class="sr-only">Toggle theme</span>
+        
+    <MoonIcon class="w-4 h-4 text-blue-500 m-auto mt-1 icon-dark hidden" />
+  </div>
 </div>
 
 <script is:inline>
-    document.addEventListener("DOMContentLoaded", () => {
-        const switchEl = document.getElementById("theme-switch");
-        const knob = document.getElementById("switch-knob");
-        const iconLight = document.getElementById("icon-light");
-        const iconDark = document.getElementById("icon-dark");
+  document.addEventListener("DOMContentLoaded", () => {
+    const switchEl = document.getElementById("theme-switch");
+    const knob = document.getElementById("switch-knob");
+    const iconLight = knob.querySelector(".icon-light");
+    const iconDark = knob.querySelector(".icon-dark");
 
-        const getStoredTheme = () => {
-            const stored = localStorage.getItem("theme");
-            if (stored) return stored;
+    function setTheme(theme) {
+      const isDark = theme === "dark";
+      document.documentElement.classList.toggle("dark", isDark);
+      localStorage.setItem("theme", theme);
 
-            // Si no hay tema guardado, detecta el modo del sistema
-            const prefersDark = window.matchMedia(
-                "(prefers-color-scheme: dark)",
-            ).matches;
-            return prefersDark ? "dark" : "light";
-        };
+      knob.style.transform = isDark ? "translateX(24px)" : "translateX(0)";
+      iconLight.classList.toggle("hidden", isDark);
+      iconDark.classList.toggle("hidden", !isDark);
+    }
 
-        const setTheme = (theme) => {
-            const isDark = theme === "dark";
-            document.documentElement.classList.toggle("dark", isDark);
-            localStorage.setItem("theme", theme);
+    const storedTheme =
+      localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
 
-            // Mover knob y cambiar iconos
-            if (isDark) {
-                knob.style.transform = "translateX(24px)";
-                iconLight.classList.add("hidden");
-                iconDark.classList.remove("hidden");
-            } else {
-                knob.style.transform = "translateX(0)";
-                iconLight.classList.remove("hidden");
-                iconDark.classList.add("hidden");
-            }
-        };
+    setTheme(storedTheme);
 
-        // Estado inicial
-        setTheme(getStoredTheme());
-
-        switchEl.addEventListener("click", () => {
-            const currentTheme = getStoredTheme();
-            const newTheme = currentTheme === "light" ? "dark" : "light";
-            setTheme(newTheme);
-        });
+    switchEl.addEventListener("click", () => {
+      const currentTheme = localStorage.getItem("theme");
+      setTheme(currentTheme === "light" ? "dark" : "light");
     });
+  });
 </script>
