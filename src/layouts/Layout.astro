@@ -1,5 +1,6 @@
 ---
 import Background from "@/components/Background.astro";
+import Icons from "@/components/Icons.astro";
 import "@/styles/global.css";
 
 const { title, description } = Astro.props;
@@ -22,6 +23,7 @@ const { title, description } = Astro.props;
 	</head>
 	<body>
 		<Background />
+		<Icons />
 		<slot />
 	</body>
 	<style>

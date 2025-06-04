@@ -11,7 +11,61 @@ export const data = {
         country: "Ecuador"
     },
     about: `Soy un desarrollador con experiencia en Node.js, MongoDB y Express. Me enfoco en crear APIs REST y soluciones escalables.`,
-    skills: ["JavaScript", "Node.js", "MongoDB", "Astro", "TailwindCSS", "Express", "Docker", "JWT", "MySQL"],
+    skills: [
+        {
+            title: "Lenguajes de Programación",
+            items: [
+                { name: "JavaScript", icon: "#JS" },
+                { name: "TypeScript", icon: "#TS" },
+                { name: "Java", icon: "#Java" },
+                { name: "Python", icon: "#Python" },
+                { name: "C++", icon: "#CPP" },
+                { name: "Dart", icon: "#Dart" },
+            ],
+        },
+        {
+            title: "Tecnologías Front-End",
+            items: [
+                { name: "HTML", icon: "#HTML" },
+                { name: "CSS", icon: "#CSS" },
+                { name: "Bootstrap", icon: "#Bootstrap" },
+                { name: "React", icon: "#React" },
+                { name: "Astro", icon: "#Astro" },
+                { name: "Tailwind CSS", icon: "#TailwindCSS" },
+            ],
+        },
+        {
+            title: "Tecnologías Back-End y Bases de Datos",
+            items: [
+                { name: "Node.js", icon: "#NodeJs" },
+                { name: "Express", icon: "#Express" },
+                { name: "SpringBoot", icon: "#Spring" },
+                { name: "MySQL", icon: "#MySQL" },
+                { name: "PostgreSQL", icon: "#PostgreSQL" },
+                { name: "MongoDB", icon: "#MongoDB" },
+                { name: "SQLite", icon: "#SQLite" },
+                { name: "Turso DB", icon: "#TursoDB" },
+            ],
+        },
+        {
+            title: "Plataformas y Servicios Cloud",
+            items: [
+                { name: "Firebase", icon: "#Firebase" },
+                { name: "Clerk", icon: "#Clerk" },
+                { name: "Swagger", icon: "#Swagger" },
+            ],
+        },
+        {
+            title: "Herramientas y Otros",
+            items: [
+                { name: "Git", icon: "#Git" },
+                { name: "GitHub", icon: "#GitHub" },
+                { name: "Docker", icon: "#Docker" },
+                { name: "Postman", icon: "#Postman" },
+                { name: "JMeter", icon: "#JMeter" },
+            ],
+        },
+    ],
     experience: [
         {
             title: "Servicios y Soporte al Usuario",
