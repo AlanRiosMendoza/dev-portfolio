@@ -3,7 +3,7 @@ export const data = {
     role: "Desarrollador Full Stack",
     dateOfBirth: "2003-01-02",
     status: "Disponible para trabajar",
-    carrer:{
+    carrer: {
         name: "Tecnología Superior en Desarrollo de Software",
         institution: "Escuela Politécnica Nacional",
         graduationYear: 2025,
@@ -19,7 +19,8 @@ export const data = {
         city: "Quito",
         country: "Ecuador"
     },
-    about: `Soy un desarrollador con experiencia en Node.js, MongoDB y Express. Me enfoco en crear APIs REST y soluciones escalables.`,
+    about: "Hola, soy Alan Rios, desarrollador web Full Stack con sólida formación técnica y experiencia práctica en la creación de aplicaciones modernas, seguras y funcionales. Me apasiona la tecnología, el aprendizaje continuo y construir soluciones que aporten valor real. Actualmente busco mi primera oportunidad profesional para crecer, aportar y formar parte de un equipo innovador.",
+
     skills: [
         {
             title: "Lenguajes de Programación",
@@ -156,5 +157,12 @@ export const data = {
                 icon: "#Instagram"
             }
         ]
-    }
+    },
+    get stats() {
+        return {
+            projects: this.projects.length,
+            experience: 1,
+            skills: this.skills.reduce((total, group) => total + group.items.length, 0),
+        };
+    },
 };

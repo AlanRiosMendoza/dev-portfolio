@@ -1,31 +1,63 @@
 ---
 import { data } from "@/data.ts";
+
+const statsLabels = {
+    experience: "Experiencia",
+    projects: "Proyectos Completos",
+    skills: "Habilidades",
+};
 ---
 
 <section class="scroll-mt-17" id="sobre-mi">
     <h2
         class="flex items-center gap-2 text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4"
     >
-        <svg width="20" height="20">
-            <use xlink:href="#AboutMe"></use>
-        </svg>Sobre mí
+        <svg width="20" height="20"><use xlink:href="#AboutMe"></use></svg>
+        Sobre mí
     </h2>
-    <div
-        class="relative flex flex-col rounded-xl border border-white/10
-        bg-white/20 dark:bg-gray-900/40
-        backdrop-blur-md p-6 shadow-md
-        transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl"
-    >
-        <div class="flex gap-4 mb-4 items-center">
-            <img
-                src={data.avatar}
-                alt="Profile Picture"
-                class="rounded-full w-36 h-36 object-cover block border-2 border-white dark:border-gray-700"
-            />
-        </div>
 
-        <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-            {data.about}
-        </p>
+    <!-- Card principal con estilo armonizado con habilidades -->
+    <div
+        class="relative flex flex-col rounded-xl border border-white/10 bg-white/20 dark:bg-gray-900/40 backdrop-blur-md p-6 shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl text-gray-800 dark:text-gray-200"
+    >
+        <!-- Contenido dinámico desde data.about -->
+        <p
+            class="text-sm leading-relaxed prose prose-sm prose-neutral dark:prose-invert max-w-none"
+            set:html={data.about}
+        />
+
+        <!-- Subtítulo para estadísticas -->
+        <h4 class="pt-5 text-xl font-semibold text-gray-900 dark:text-white">
+            Estadísticas
+        </h4>
+
+        <section id="stats" class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            {
+                Object.entries(data.stats).map(([key, value]) => {
+                    let displayValue = "";
+
+                    if (key === "experience") {
+                        displayValue = `${value}+ año${value > 1 ? "s" : ""}`;
+                    } else if (value < 10) {
+                        displayValue = value.toString();
+                    } else {
+                        const rounded = Math.floor(value / 10) * 10;
+                        displayValue = `${rounded}+`;
+                    }
+
+                    return (
+                        <article class="flex flex-col items-center justify-center p-5 rounded-tr-[50px] rounded-bl-[50px] bg-white/80 dark:bg-gray-800 text-[#5F17CE] dark:text-[#C6A8FF] border-2 border-dashed border-[#5F17CE] dark:border-[#9F6DFF] shadow-sm transition-transform duration-300 hover:scale-105">
+                            <span class="number text-4xl font-bold">
+                                {displayValue}
+                            </span>
+                            <h3 class="title text-lg font-semibold text-center">
+                                {statsLabels[key as keyof typeof statsLabels] ??
+                                    key}
+                            </h3>
+                        </article>
+                    );
+                })
+            }
+        </section>
     </div>
 </section>
