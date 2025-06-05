@@ -1,41 +1,31 @@
 ---
 import { data } from "@/data.ts";
-
-import AboutMeIcon from "@/assets/svg/aboutMeIcon.svg";
-
-const animation = "fade-up-right";
-const duration = 1000;
 ---
 
-<section class="scroll-mt-17"
-    id="sobre-mi">
-    <div
-        data-aos={animation}
-        data-aos-duration={duration}
-        class="aos-init aos-animate"
+<section class="scroll-mt-17" id="sobre-mi">
+    <h2
+        class="flex items-center gap-2 text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4"
     >
-        <h2
-            class="flex items-center gap-2 text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4"
-        >
-            <AboutMeIcon /> Sobre mí
-        </h2>
-        <div
-            class="relative flex flex-col rounded-xl border border-white/10
+        <svg width="20" height="20">
+            <use xlink:href="#AboutMe"></use>
+        </svg>Contacto Sobre mí
+    </h2>
+    <div
+        class="relative flex flex-col rounded-xl border border-white/10
         bg-white/20 dark:bg-gray-900/40
         backdrop-blur-md p-6 shadow-md
         transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl"
-        >
-            <div class="flex gap-4 mb-4 items-center">
-                <img
-                    src={data.avatar}
-                    alt="Profile Picture"
-                    class="rounded-full w-36 h-36 object-cover block border-2 border-white dark:border-gray-700"
-                />
-            </div>
-
-            <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                {data.about}
-            </p>
+    >
+        <div class="flex gap-4 mb-4 items-center">
+            <img
+                src={data.avatar}
+                alt="Profile Picture"
+                class="rounded-full w-36 h-36 object-cover block border-2 border-white dark:border-gray-700"
+            />
         </div>
+
+        <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+            {data.about}
+        </p>
     </div>
 </section>

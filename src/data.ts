@@ -1,11 +1,15 @@
 export const data = {
     name: "Alan Rios",
-    email: "alan.rios.hd@gmail.com",
-    role: "Desarrollador Backend",
-    careerTitle: "Tecnólogo Superior en Desarrollo de Software",
+    role: "Desarrollador Full Stack",
+    dateOfBirth: "2003-01-02",
     status: "Disponible para trabajar",
+    careerTitle: "Tecnólogo Superior en Desarrollo de Software",
     avatar: "/src/assets/me.webp",
-    cv: "https://drive.google.com/file/d/1_NzYD_MeRGAY8_Pwt0XdEoFs3bLatHYr/view?usp=sharing",
+    cv: {
+        name: "CV_Alan_Rios.pdf",
+        icon: "#CV",
+        url: "https://drive.google.com/file/d/1_NzYD_MeRGAY8_Pwt0XdEoFs3bLatHYr/view?usp=sharing",
+    },
     location: {
         city: "Quito",
         country: "Ecuador"
@@ -145,6 +149,5 @@ export const data = {
                 icon: "#Instagram"
             }
         ]
-
     }
 };

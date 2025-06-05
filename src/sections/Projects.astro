@@ -1,7 +1,6 @@
 ---
 import ProjectCard from "@/components/ProjectCard.astro";
 import { data } from "@/data.ts";
-import ProjectIcon from "@/assets/svg/projectIcon.svg";
 
 const proyects = data.projects;
 ---
@@ -10,7 +9,10 @@ const proyects = data.projects;
     <h2
         class="flex items-center gap-2 text-2xl font-bold text-left text-gray-900 dark:text-gray-100 mb-4"
     >
-        <ProjectIcon /> Proyectos
+        <svg width="20" height="20">
+            <use xlink:href="#Projects"></use>
+        </svg>
+        Proyectos
     </h2>
     <div class="grid grid-cols-2 gap-6">
         {
