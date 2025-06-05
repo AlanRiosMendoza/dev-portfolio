@@ -1,8 +1,7 @@
 ---
-import ProjectCard from "@/components/ProjectCard.astro";
 import { data } from "@/data.ts";
 
-const proyects = data.projects;
+const projects = data.projects;
 ---
 
 <section class="scroll-mt-17" id="proyectos">
@@ -14,17 +13,104 @@ const proyects = data.projects;
         </svg>
         Proyectos
     </h2>
-    <div class="grid grid-cols-2 gap-6">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {
-            proyects.map((project) => (
-                <ProjectCard
-                    title={project.name}
-                    description={project.description}
-                    imageUrl={project.img}
-                    demoUrl={project.url}
-                    githubUrl={project.github}
-                    tech={project.tech}
-                />
+            projects.map((project) => (
+                <div
+                    class="relative flex flex-col rounded-xl border border-white/10
+                 bg-white/20 dark:bg-gray-900/40
+                 backdrop-blur-md p-4 shadow-md
+                 transition-transform duration-300
+                 hover:scale-[1.01] hover:shadow-xl"
+                >
+                    {/* Imagen */}
+                    <img
+                        src={project.img}
+                        alt={`${project.name} - project image`}
+                        class="rounded-lg mb-4"
+                    />
+
+                    {/* Contenido */}
+                    <div class="flex flex-col gap-2 flex-1">
+                        <h4 class="text-xl font-semibold text-gray-900 dark:text-white">
+                            {project.name}
+                        </h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                            {project.description}
+                        </p>
+
+                        {/* Tecnologías */}
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            {project.tech.map((item) => (
+                                <span class="text-xs bg-white/30 dark:bg-gray-700 text-gray-900 dark:text-gray-200 px-2 py-1 rounded-md">
+                                    {item}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Footer */}
+                    <div class="mt-auto pt-4 flex items-center justify-between">
+                        {/* Lado izquierdo: Demo */}
+                        <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex items-center gap-1 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors"
+                        >
+                            Demo
+                            <svg width="20" height="20">
+                                <use xlink:href="#World" />
+                            </svg>
+                        </a>
+
+                        {/* Lado derecho: YouTube + Swagger + GitHub */}
+                        <div class="flex gap-4">
+                            {project.youtube && (
+                                <a
+                                    href={project.youtube}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="flex items-center gap-1 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                >
+                                    YouTube
+                                    <svg width="20" height="20">
+                                        <use xlink:href="#Youtube" />
+                                    </svg>
+                                </a>
+                            )}
+
+                            {project.swagger && (
+                                <a
+                                    href={project.swagger}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="flex items-center gap-1 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                >
+                                    Swagger
+                                    <svg width="20" height="20">
+                                        <use xlink:href="#Swagger" />
+                                    </svg>
+                                </a>
+                            )}
+
+                            {project.github && (
+                                <a
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="flex items-center gap-1 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                >
+                                    GitHub
+                                    <svg width="20" height="20">
+                                        <use xlink:href="#GitHub" />
+                                    </svg>
+                                </a>
+                            )}
+                        </div>
+                    </div>
+                </div>
             ))
         }
     </div>

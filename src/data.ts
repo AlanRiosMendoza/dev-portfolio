@@ -100,10 +100,12 @@ export const data = {
             tech: ["Astro", "TailwindCSS", "MySQL", "Clerk", "Turso DB"]
         },
         {
-            name: "Sistema de Gestión de ventas e inventarios para el Punto Frío R.T.R.",
+            name: "POS - Sistema de Punto de Venta",
             url: "https://punto-frio-rtr.vercel.app",
             img: "/img/pfrtr.png",
             github: "https://github.com/AlanRiosMendoza/SYSTEM-PUNTO-FRIO-RTR",
+            swagger: "https://app.swaggerhub.com/apis/ALANRIOSHD/punto-frio-rtr/1.0.0",
+            youtube: "https://www.youtube.com/watch?v=JTLoGubrKY8&ab_channel=AlanRios",
             description: "Plataforma integral para administrar ventas, productos, clientes e inventarios de bebidas. Incluye autenticación con roles, control de envases retornables y panel administrativo, todo optimizado para el negocio Punto Frío R.T.R.",
             tech: ["Node.js", "Express", "MongoDB", "JWT", "React", "TailwindCSS"]
         }

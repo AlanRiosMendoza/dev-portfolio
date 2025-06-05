@@ -1,6 +1,7 @@
 ---
 import { data } from "@/data.ts";
-import SkillIcon from "@/assets/svg/skillIcon.svg";
+
+const { skills } = data;
 ---
 
 <section id="habilidades" class="scroll-mt-17">
@@ -15,7 +16,7 @@ import SkillIcon from "@/assets/svg/skillIcon.svg";
 
     <div class="space-y-6">
         {
-            data.skills.map((group) => (
+            skills.map((group) => (
                 <div class="relative flex flex-col rounded-xl border border-white/10 bg-white/20 dark:bg-gray-900/40 backdrop-blur-md p-6 shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
                         {group.title}
