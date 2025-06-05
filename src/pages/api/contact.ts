@@ -29,14 +29,25 @@ export const POST: APIRoute = async ({ request }) => {
     const mailToAdmin = {
       from: email,
       to: process.env.EMAIL_USER,
-      subject: "Nuevo mensaje desde el formulario de contacto",
+      subject: "📬 Nuevo mensaje desde el formulario de contacto",
       html: `
-        <h2>📩 Nuevo mensaje recibido</h2>
-        <p><strong>Nombre:</strong> ${name}</p>
-        <p><strong>Correo:</strong> ${email}</p>
-        <p><strong>Mensaje:</strong><br>${message}</p>
-      `,
+    <div style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; border-radius: 8px; color: #333;">
+      <h2 style="color: #2c3e50;">📩 Has recibido un nuevo mensaje</h2>
+      <p style="font-size: 16px;">
+        <strong>👤 Nombre:</strong> ${name}<br>
+        <strong>✉️ Correo:</strong> <a href="mailto:${email}" style="color: #2980b9;">${email}</a>
+      </p>
+      <div style="margin-top: 20px;">
+        <strong>📝 Mensaje:</strong>
+        <div style="background-color: #ffffff; padding: 15px; border-left: 4px solid #3498db; margin-top: 10px; white-space: pre-line;">
+          ${message}
+        </div>
+      </div>
+      <p style="margin-top: 30px; font-size: 14px; color: #888;">Este mensaje fue enviado desde el formulario del portafolio.</p>
+    </div>
+  `,
     };
+
 
     // Correo para el usuario que envió el formulario
     const mailToUser = {
