@@ -62,7 +62,6 @@ export const data = {
                 { name: "GitHub", icon: "#GitHub" },
                 { name: "Docker", icon: "#Docker" },
                 { name: "Postman", icon: "#Postman" },
-                { name: "JMeter", icon: "#JMeter" },
             ],
         },
     ],
@@ -105,32 +104,45 @@ export const data = {
             tech: ["Node.js", "Express", "MongoDB", "JWT", "React", "TailwindCSS"]
         }
 
-
     ],
     contact: {
-        email: "alan.rios.hd@gmail.com",
-        phone: "+593 960 131 442",
-        whatsapp: "https://api.whatsapp.com/send?phone=593960131442",
+        contacts: [
+            {
+                name: "Correo Electrónico",
+                icon: "#Email",
+                url: "alan.rios.hd@gmail.com"
+            },
+            {
+                name: "WhatsApp",
+                icon: "#WhatsApp",
+                url: "https://wa.me/593960131442"
+            },
+            {
+                name: "Teléfono",
+                icon: "#Phone",
+                url: "+593960131442"
+            }
+        ],
         socials: [
             {
                 name: "GitHub",
                 url: "https://github.com/AlanRiosMendoza/",
-                icon: "/svg/github.svg"
+                icon: "#GitHub"
             },
             {
                 name: "LinkedIn",
                 url: "https://www.linkedin.com/in/alan-rm/",
-                icon: "/svg/linkedin.svg"
+                icon: "#LinkedIn"
             },
             {
                 name: "X/Twitter",
                 url: "https://x.com/alan_ri0s",
-                icon: "/svg/x.svg"
+                icon: "#X"
             },
             {
                 name: "Instagram",
                 url: "https://www.instagram.com/alan._.rios/",
-                icon: "/svg/instagram.svg"
+                icon: "#Instagram"
             }
         ]
 
