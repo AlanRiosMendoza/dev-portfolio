@@ -3,7 +3,12 @@ export const data = {
     role: "Desarrollador Full Stack",
     dateOfBirth: "2003-01-02",
     status: "Disponible para trabajar",
-    careerTitle: "Tecnólogo Superior en Desarrollo de Software",
+    carrer:{
+        name: "Tecnología Superior en Desarrollo de Software",
+        institution: "Escuela Politécnica Nacional",
+        graduationYear: 2025,
+        icon: "#EPN"
+    },
     avatar: "/src/assets/me.webp",
     cv: {
         name: "CV_Alan_Rios.pdf",
