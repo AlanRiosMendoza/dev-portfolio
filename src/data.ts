@@ -9,7 +9,7 @@ export const data = {
         graduationYear: 2025,
         icon: "#EPN"
     },
-    avatar: "/src/assets/me.webp",
+    avatar: "/img/me.webp",
     cv: {
         name: "CV_Alan_Rios.pdf",
         icon: "#CV",
