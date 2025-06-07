@@ -3,9 +3,9 @@ import { data } from "@/data.ts";
 ---
 
 <div
-    class="relative flex flex-col lg:flex-col sm:flex-row md:flex-row items-center gap-5
-         max-w-7xl w-full mx-auto rounded-xl border border-white/10
-         p-6 sm:px-6 lg:px-8
+    class="relative flex flex-col lg:flex-row sm:flex-row md:flex-row gap-5
+         w-full mx-auto rounded-xl border border-white/10
+         p-6 sm:px-6 lg:px-8 items-center
          bg-white/20 dark:bg-gray-900/40 backdrop-blur-md shadow-md
          transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl
          overflow-hidden"
@@ -19,8 +19,10 @@ import { data } from "@/data.ts";
 
     <div
         class="flex flex-col gap-3 w-full max-w-full
-           items-center text-center md:items-start md:text-left
-           lg:items-center lg:text-center sm:items-center sm:text-center break-words"
+        lg:flex-1 lg:items-start lg:text-left
+           items-center text-center md:items-start md:text-left sm:flex-1
+           sm:w-full sm:max-w-md sm:items-start sm:text-left
+          break-words"
     >
         <a
             href="https://btlk.vercel.app/alan"
@@ -54,29 +56,28 @@ import { data } from "@/data.ts";
         <span
             class="flex items-start gap-2 text-sm sm:text-base text-gray-700 dark:text-gray-300 break-words"
         >
-            <svg width="20" height="20" class="mt-0.5 flex-shrink-0">
-                <use xlink:href="#Location"></use>
-            </svg>
-            {data.location.city}, {data.location.country}
+            {data.role}
         </span>
 
         <span
             class="flex items-start gap-2 text-sm sm:text-base text-gray-700 dark:text-gray-300 break-words"
         >
             <svg width="20" height="20" class="mt-0.5 flex-shrink-0">
-                <use xlink:href="#GraduateCap"></use>
+                <use xlink:href="#Location"></use>
             </svg>
-            {data.carrer.name}
+            {data.location.city}, {data.location.country}
         </span>
 
+        
+
         <div
-            class="flex flex-wrap gap-3 mt-3 w-full justify-center md:justify-start"
+            class="flex flex-row flex-wrap gap-3 mt-3 w-full justify-center md:justify-start"
         >
             <a
                 href={data.cv.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full max-w-full px-4 py-2 text-white text-center rounded-lg
+                class="flex-1 min-w-[140px] px-4 py-2 text-white text-center rounded-lg
            bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600
            transition-colors duration-300 flex items-center justify-center gap-2"
             >
@@ -91,7 +92,7 @@ import { data } from "@/data.ts";
                     ?.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full max-w-full px-4 py-2 text-white text-center rounded-lg
+                class="flex-1 min-w-[140px] px-4 py-2 text-white text-center rounded-lg
            bg-green-500 hover:bg-green-600 dark:bg-green-400 dark:hover:bg-green-500
            transition-colors duration-300 flex items-center justify-center gap-2"
             >

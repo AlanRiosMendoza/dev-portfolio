@@ -1,6 +1,6 @@
 export const data = {
     name: "Alan Rios",
-    role: "Desarrollador Full Stack",
+    role: "Back-End | Node.js | TypeScript | Express.js",
     dateOfBirth: "2003-01-02",
     status: "Disponible para trabajar",
     carrer: {
@@ -19,7 +19,7 @@ export const data = {
         city: "Quito",
         country: "Ecuador"
     },
-    about: "Hola, soy Alan Rios, desarrollador web Full Stack con sólida formación técnica y experiencia práctica en la creación de aplicaciones modernas, seguras y funcionales. Me apasiona la tecnología, el aprendizaje continuo y construir soluciones que aporten valor real. Actualmente busco mi primera oportunidad profesional para crecer, aportar y formar parte de un equipo innovador.",
+    about: ["Hola, soy Alan Rios, desarrollador Back-End con sólida formación técnica y experiencia práctica en la creación de aplicaciones modernas, seguras y funcionales.", "Me apasiona la tecnología, el aprendizaje continuo y construir soluciones que aporten valor real.", "Actualmente busco mi primera oportunidad profesional para crecer, aportar y formar parte de un equipo innovador."],
 
     skills: [
         {
@@ -77,24 +77,29 @@ export const data = {
     ],
     experience: [
         {
-            title: "Servicios y Soporte al Usuario",
-            company: "EPN - DGIP",
-            period: "2024 - 2024",
-            description: "",
+            title: "Soporte Técnico y Gestión de Sistemas",
+            company: "DGIP - Escuela Politécnica Nacional",
+            period: "2024",
+            description: "Prácticas profesionales brindando soporte técnico y mantenimiento de sistemas en un entorno institucional, fortaleciendo habilidades técnicas aplicables al desarrollo Back-End.",
             responsibilities: [
-                "Desarrollo de aplicaciones web con Node.js y Express."
+                "Diagnóstico y resolución de incidencias técnicas en software, hardware y conectividad de red.",
+                "Mantenimiento preventivo y correctivo a equipos utilizados en áreas administrativas y académicas.",
+                "Apoyo en la gestión y seguimiento de sistemas institucionales, adquiriendo conocimientos sobre arquitectura y funcionamiento de plataformas internas.",
+                "Atención a usuarios y análisis de problemas, desarrollando habilidades de comunicación técnica y pensamiento lógico aplicado.",
             ]
         },
         {
             title: "Gestión Documental y Bases de Datos",
-            company: "EPN - Dirección Financiera",
+            company: "Dirección Financiera - Escuela Politécnica Nacional",
             period: "2023 - 2024",
-            description: "Desarrollo de aplicación para gestión documental y bases de datos.",
+            description: "Prácticas profesionales orientadas a la organización y trazabilidad de documentos físicos mediante el diseño de un sistema de gestión de datos con enfoque en Back-End.",
             responsibilities: [
-                "Diseño y desarrollo de APIs RESTful."
+                "Diseñé un sistema de registro para localizar documentos físicos distribuidos en diferentes áreas de la institución.",
+                "Estructuré y migré información desde hojas de Excel a una base de datos MySQL, organizando datos clave como ubicación, número de hojas, nombre de carpetas y descripciones.",
+                "Normalicé y modelé los datos para facilitar consultas eficientes y mantener la integridad de la información.",
+                "Aporté en la mejora de procesos de búsqueda documental mediante el uso de consultas SQL y estructuras relacionales."
             ]
-        },
-
+        }
     ],
     projects: [
         {
@@ -165,4 +170,4 @@ export const data = {
             skills: this.skills.reduce((total, group) => total + group.items.length, 0),
         };
     },
-};
+}; 1

@@ -1,6 +1,7 @@
+<!-- Switch grande: visible solo en sm y mayores -->
 <div
   id="theme-switch"
-  class="relative inline-flex items-center w-14 h-8 bg-gray-300 rounded-full cursor-pointer dark:bg-gray-700"
+  class="hidden sm:inline-flex relative items-center w-14 h-8 bg-gray-300 rounded-full cursor-pointer dark:bg-gray-700"
 >
   <div
     id="switch-knob"
@@ -9,29 +10,52 @@
     <svg class="w-4 h-4 text-yellow-400 m-auto mt-1 icon-light">
       <use xlink:href="#Sun"></use>
     </svg>
-
-    <span class="sr-only">Toggle theme</span>
     <svg class="w-4 h-4 text-blue-500 m-auto mt-1 icon-dark hidden">
       <use xlink:href="#Moon"></use>
     </svg>
   </div>
 </div>
 
+<!-- Botón circular: visible solo en menores a sm -->
+<button
+  id="theme-button"
+  class="sm:hidden w-10 h-10 flex items-center justify-center rounded-full bg-gray-300 dark:bg-gray-700"
+>
+  <svg class="w-5 h-5 text-yellow-400 icon-light">
+    <use xlink:href="#Sun"></use>
+  </svg>
+  <svg class="w-5 h-5 text-blue-500 icon-dark hidden">
+    <use xlink:href="#Moon"></use>
+  </svg>
+</button>
+
+
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     const switchEl = document.getElementById("theme-switch");
     const knob = document.getElementById("switch-knob");
-    const iconLight = knob.querySelector(".icon-light");
-    const iconDark = knob.querySelector(".icon-dark");
+    const iconLightSwitch = knob.querySelector(".icon-light");
+    const iconDarkSwitch = knob.querySelector(".icon-dark");
+
+    const buttonEl = document.getElementById("theme-button");
+    const iconLightBtn = buttonEl.querySelector(".icon-light");
+    const iconDarkBtn = buttonEl.querySelector(".icon-dark");
 
     function setTheme(theme) {
       const isDark = theme === "dark";
       document.documentElement.classList.toggle("dark", isDark);
       localStorage.setItem("theme", theme);
 
-      knob.style.transform = isDark ? "translateX(24px)" : "translateX(0)";
-      iconLight.classList.toggle("hidden", isDark);
-      iconDark.classList.toggle("hidden", !isDark);
+      // Animación del switch (pantallas grandes)
+      if (knob) {
+        knob.style.transform = isDark ? "translateX(24px)" : "translateX(0)";
+        iconLightSwitch?.classList.toggle("hidden", isDark);
+        iconDarkSwitch?.classList.toggle("hidden", !isDark);
+      }
+
+      // Iconos del botón circular (pantallas pequeñas)
+      iconLightBtn?.classList.toggle("hidden", isDark);
+      iconDarkBtn?.classList.toggle("hidden", !isDark);
     }
 
     const storedTheme =
@@ -42,7 +66,13 @@
 
     setTheme(storedTheme);
 
-    switchEl.addEventListener("click", () => {
+    // Eventos para cambiar el tema
+    switchEl?.addEventListener("click", () => {
+      const currentTheme = localStorage.getItem("theme");
+      setTheme(currentTheme === "light" ? "dark" : "light");
+    });
+
+    buttonEl?.addEventListener("click", () => {
       const currentTheme = localStorage.getItem("theme");
       setTheme(currentTheme === "light" ? "dark" : "light");
     });

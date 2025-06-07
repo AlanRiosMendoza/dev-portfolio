@@ -21,10 +21,13 @@ const statsLabels = {
         class="relative flex flex-col rounded-xl border border-white/10 bg-white/20 dark:bg-gray-900/40 backdrop-blur-md p-6 shadow-md transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl text-gray-800 dark:text-gray-200"
     >
         <!-- Contenido dinámico desde data.about -->
-        <p
-            class="text-sm leading-relaxed prose prose-sm prose-neutral dark:prose-invert max-w-none"
-            set:html={data.about}
-        />
+         {data.about.map((paragraph, ) => (
+            <p
+                class={`text-sm leading-relaxed prose prose-sm prose-neutral dark:prose-invert max-w-none}`}
+            >
+                {paragraph}
+            </p>
+        ))}
 
         <!-- Subtítulo para estadísticas -->
         <h4 class="pt-5 text-xl font-semibold text-gray-900 dark:text-white">
