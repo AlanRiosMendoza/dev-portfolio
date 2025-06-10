@@ -13,7 +13,7 @@ export const data = {
     cv: {
         name: "CV_Alan_Rios.pdf",
         icon: "#CV",
-        url: "https://drive.google.com/file/d/1_NzYD_MeRGAY8_Pwt0XdEoFs3bLatHYr/view?usp=sharing",
+        url: "https://drive.google.com/file/d/1c3wPzI5rFvvS_I82BtbCNj07ww77lR0H/view?usp=sharing",
     },
     location: {
         city: "Quito",
